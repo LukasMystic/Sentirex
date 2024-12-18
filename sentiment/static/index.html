@@ -1,0 +1,328 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentirex</title>
+    <title icon></title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="icon" href="{% static 'asset/Sentirex-removebg-preview.png' %}" type="image/png">
+    <script src="https://kit.fontawesome.com/43c9ab6ad0.js" crossorigin="anonymous"></script>
+    <script src="{% static 'script.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+<body>
+    <section class="header">
+        <nav>
+            <span class="logo">
+                <img src="{% static 'asset/Sentirex-removebg-preview.png' %}">
+                <h3 class="poppins-bold">Sentirex</h3>
+            </span>
+            <div class="nav-links">
+                <h3 class="poppins-bold" id="nl1">Tentang Kami</h3>
+                <h3 class="poppins-bold" id="nl2">Kontak</h3>
+            </div>
+        </nav>
+        <span class="title">
+            <span class="text">
+                <h3 class="montserrat-extrabold">Mengukap Emosi di Balik Setiap Kata</h3>
+                <p class="montserrat-medium">"Solusi cerdas berbasis AI untuk menganalisis sentimen 
+                    dan memberikan wawasan mendalam tentang emosi dalam teks andamengenai Tapera."</p>
+            </span>
+            <button class="hero-button"><h3 class="montserrat-extrabold">Klik Disini</h3></button>
+        </span>
+    </section>
+    <div class="divider"></div>
+    <section class="analyze">
+        <span class="title">
+            <label for="ta-post"><h3 class="montserrat-medium">Apa pendapat Anda tentang Tapera?</h3></label>
+            <i class="fa-regular fa-circle-question"></i>
+        </span>
+        <form id="sentimentForm" method="post" onsubmit="return sendText(event)">
+            <textarea id="ta-post" name="text" class="montserrat-thin" placeholder="Masukan kata-katamu di sini..." oninput="updateWordCount()"></textarea>
+            <div class="description">
+                <div class="total-words">
+                    <h3 class="montserrat-medium" id="char-count">0 Karakter |</h3>
+                    <h3 class="montserrat-medium" id="word-count">0 Kata </h3>
+                </div>
+                <button type="submit" class="montserrat-bold" id="analyze-button">
+                    <h3>Analisa</h3>
+                </button>
+            </div>
+        </form>
+        
+        <script>
+            function updateWordCount() {
+                var text = document.getElementById('ta-post').value;
+                var charCount = text.length;
+                var wordCount = text.split(/\s+/).filter(function(word) { return word.length > 0 }).length;
+        
+                document.getElementById('char-count').textContent = charCount + ' Characters |';
+                document.getElementById('word-count').textContent = wordCount + ' Words';
+            }
+        </script>
+        
+        
+       
+        
+        
+        <div class="decor-analyze">
+            <div class="pattern">
+                <div class="box1"></div>
+                <div class="box2"></div>
+                <div class="box3"></div>
+                <div class="box4"></div>
+            </div>
+            <div class="pattern">
+                <div class="box1"></div>
+                <div class="box2"></div>
+                <div class="box3"></div>
+                <div class="box4"></div>
+            </div>
+            <div class="pattern">
+                <div class="box1"></div>
+                <div class="box2"></div>
+                <div class="box3"></div>
+                <div class="box4"></div>
+            </div>
+            <div class="pattern">
+                <div class="box1"></div>
+                <div class="box2"></div>
+                <div class="box3"></div>
+                <div class="box4"></div>
+            </div>
+            <div class="pattern">
+                <div class="box1"></div>
+                <div class="box2"></div>
+                <div class="box3"></div>
+                <div class="box4"></div>
+            </div>
+            <div class="pattern">
+                <div class="box1"></div>
+                <div class="box2"></div>
+                <div class="box3"></div>
+                <div class="box4"></div>
+            </div>
+        </div>
+    </section>
+    <div class="divider"></div>
+    <section class="summary">
+        <div class="title">
+            <h3 class="montserrat-bold">Hasil Analisis</h3>
+            <p class="montserrat-thin">Berikut Hasil Analisis Anda </p>
+        </div>
+
+        <div id="result" style="margin-top: 20px;">
+            <p class="montserrat-bold">Prediksi Sentimen: <span id="prediction"></span></p>
+        </div>
+
+        <div class="container" id = "charts-section">
+            <div class="data-left">
+                <div class="pie-chart">
+                    <h3 class="montserrat-bold">Pie Chart</h3>
+                    <canvas id="pieChart" style="align-self: center; justify-self: center; margin-bottom: 25px;"></canvas> 
+                </div>
+                <div class="conclusion">
+                    <h3 class="montserrat-bold">Kesimpulan</h3>
+                    <p id="sentimentConclusion" class="montserrat-medium"></p> 
+                </div>
+            </div>
+            <div class="data-right">
+                <div class="bar-chart">
+                    <h3 class="montserrat-bold">Bar Chart</h3>
+                    <canvas id="barChart" style="padding-bottom: 15px;"></canvas> 
+                </div>
+            </div>
+        </div>
+        
+    </section>
+    <div class="divider"></div>
+    <section class="intro">
+        <div class="logo">
+            <img src="{% static 'asset/Sentirex-removebg-preview.png' %}" width="200px" height="200px">
+        </div>
+        <div class="description">
+            <div class="title">
+                <h3 class="montserrat-extrabold">Apa itu Sentirex?</h3>
+                <p class="montserrat-medium">Sentirex adalah alat analisis sentimen berbasis AI yang membantu Anda memahami emosi di balik teks. Hanya dengan klik mouse anda.</p>
+            </div>
+            <div class="stats">
+                <div class="user-analysed">
+                    <div class="box">
+                        <h3 class="poppins-medium" id="user">500</h3>
+                    </div>
+                    <p class="montserrat-medium">Pengguna <br> di Analisa </P>
+                </div>
+                <div class="send-recomendation">
+                    <div class="box">
+                        <h3 class="poppins-medium" id="recommend">500</h3>
+                    </div>
+                    <p class="montserrat-medium">Rekomendasi<br>di kirim </p>
+                </div>
+                <div class="fast-processing">
+                    <div class="box">
+                        <h3 class="poppins-medium" id="process">500</h3>
+                    </div>
+                    <p class="montserrat-medium">Kecepatan <br>Prosesing</p>
+                </div>
+            </div>
+        </div>
+        <div class="decor-intro">
+            <div class="box1"></div>
+            <div class="box2"></div>
+            <div class="box3"></div>
+            <div class="box4-mobile"></div>
+            <div class="box5-mobile"></div>
+        </div>
+    </section>
+    <div class="divider"></div>
+    <section class="mission">
+        <span class="title">
+            <h3 class="montserrat-bold">Mengapa pilih kami?</h3>
+        </span>
+        <div class="container">
+            <div class="box">
+                <div class="logo">
+                    <img src="{% static 'asset\Choose-1.png' %}">
+                    <h3 class="poppins-bold">Analisis <br> Akurat</h3>
+                    <p class="montserrat-thin">“mendeteksi sentimen dengan akurasi tinggi untuk memberikan wawasan emosional yang terpercaya.”</p>
+                </div>
+            </div>
+            <div class="box">
+                <div class="logo">
+                    <img src="{% static 'asset\Choose-2.png' %}">
+                    <h3 class="poppins-bold">Rekomendasi <br> untuk anda</h3>
+                    <p class="montserrat-thin">"sugesti yang dibikin sesuai berdasarkan nilai emosional kata anda."</p>
+                </div>
+            </div>
+            <div class="box">
+                <div class="logo">
+                    <img src="{% static 'asset\Choose-3.png' %}">
+                    <h3 class="poppins-bold">Pengalaman<br> Yang cepat</h3>
+                    <p class="montserrat-thin">"sentimen yang sederhana,cepat, dan ramah pengguna untuk semua orang"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="divider"></div>
+    <section class="core-values">
+        <span class="title">
+            <h3 class="montserrat-bold">Nilai Kami</h3>
+        </span>
+        <div class="container">
+            <div class="values">
+                <img src="{% static 'asset\Values-1.png' %}">
+                <span class="description">
+                    <h3 class="poppins-bold">Akurasi</h3>
+                    <p class="montserrat-thin">Kami memprioritaskan penyampaian analisis sentimen yang tepat dan andal untuk memastikan Anda mendapatkan wawasan yang bermakna dari teks Anda. Model AI canggih kami terus belajar dan berkembang untuk mempertahankan akurasi tinggi.</p>
+                </span>
+            </div>
+            <div class="values">
+                <img src="{% static 'asset\Values-2.png' %}">
+                <span class="description">
+                    <h3 class="poppins-bold">Sederhana</h3>
+                    <p class="montserrat-thin">Analisis sentimen tidak harus rumit. Tujuan kami adalah memberikan pengalaman yang intuitif dan lugas, sehingga Anda dapat fokus pada wawasan tanpa tersesat dalam detailnya.</p>
+                </span>
+            </div>
+            <div class="values">
+                <img src="{% static 'asset\Values-3.png' %}">
+                <span class="description">
+                    <h3 class="poppins-bold">Personalisasi</h3>
+                    <p class="montserrat-thin">Setiap sentimen itu unik, begitu pula rekomendasi kami. Kami menyesuaikan saran berdasarkan nada emosional teks Anda, membantu Anda mengambil tindakan yang relevan dan efektif.</p>
+                </span>
+            </div>
+        </div>
+        <div class="decor-core-values-left">
+            <div class="box1"></div>
+            <div class="box2"></div>
+            <div class="box3"></div>
+        </div>
+        <div class="decor-core-values-right">
+            <div class="box1"></div>
+            <div class="box2"></div>
+            <div class="box3"></div>
+        </div>
+    </section>
+    <div class="divider"></div>
+    <section class="how-work">
+        <span class="title">
+            <h3 class="montserrat-extrabold">Bagaimana Sentirex Bekerja?</h3>
+            <p class="montserrat-medium">Berikut ini  tentang cara kami bekerja</p>
+        </span>
+        <div class="step-1">
+            <img src="{% static 'asset\Work-1.png' %}">
+            <div class="description">
+                <h3 class="montserrat-extrabold">Kami Mengumpulkan Masukan Anda</h3>
+                <p class="montserrat-medium">Saat Anda memasukkan komentar atau ulasan, sistem kami membersihkannya agar fokus pada kata-kata penting.</p>
+            </div>
+        </div>
+        <div class="step-2">
+            <div class="description">
+                <h3 class="montserrat-extrabold">Teks Menjadi Data</h3>
+                <p class="montserrat-medium">Kata-kata tersebut diubah menjadi angka sehingga komputer dapat memahami dan menganalisisnya.</p>
+            </div>
+            <img src="{% static 'asset\Work-2.png' %}">
+        </div>
+        <div class="step-3">
+            <img src="{% static 'asset\Work-3.png' %}">
+            <div class="description">
+                <h3 class="montserrat-extrabold">Analisis Cerdas</h3>
+                <p class="montserrat-medium">Model kami menganalisis teks Anda untuk menentukan apakah teks tersebut positif, negatif, atau netral.</p>
+            </div>
+        </div>
+        <div class="step-4">
+            <div class="description">
+                <h3 class="montserrat-extrabold">Dapatkan Hasil Instan</h3>
+                <p class="montserrat-medium">Setelah sistem menganalisis komentar Anda, sistem akan langsung memberi tahu Anda sentimen dari komentar tersebut</p>
+            </div>
+            <img src="{% static 'asset\Work-4.png' %}">
+        </div>
+    </section>
+    <div class="divider"></div>
+    <section class="cot">
+        <span class="title">
+            <h3 class="montserrat-bold">Hubungi Kami</h3>
+            <p class="montserrat-medium">Kami siap membantu menjawab pertanyaan atau masukan apa pun yang Anda miliki</p>
+        </span>
+        <div class="container">
+            <table class="montserrat-medium">
+                  <tr class="header">
+                    <td>Platform</td>
+                    <td>Details</td>
+                  </tr>
+                  <tr>
+                    <td><i class="fa-brands fa-facebook"></i>Facebook</td>
+                    <td>Johndoe123</td>
+                  </tr>
+                  <tr>
+                    <td><i class="fa-solid fa-envelope"></i>Email</td>
+                    <td>dummy.email@example.com</td>
+                  </tr>
+                  <tr>
+                    <td><i class="fa-brands fa-whatsapp"></i>Whatsapp</td>
+                    <td>+62 812-3456-7890</td>
+                  </tr>
+                  <tr>
+                    <td><i class="fa-brands fa-instagram"></i>Instagram</td>
+                    <td>John_doe</td>
+                  </tr>
+              </table>
+        </div>
+        <div class="decor-cot-left">
+            <div class="box1"></div>
+            <div class="box2"></div>
+            <div class="box3"></div>
+            <div class="box4"></div>
+        </div>
+        <div class="decor-cot-right">
+            <div class="box1"></div>
+            <div class="box2"></div>
+            <div class="box3"></div>
+        </div>
+    </section>
+    <div class="footer"><h3 class="montserrat-medium">Sentirex @ 2024 All Right Reserved.</h3></div>
+    <div class="go-up-btn"><i class="fa-solid fa-chevron-up fa-xl"></i></div>
+</body>
+</html>
