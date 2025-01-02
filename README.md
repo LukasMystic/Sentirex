@@ -57,6 +57,6 @@ The `master` branch contains the implementation of a website that utilizes the t
 ### Website Features
 - User-friendly interface for data input.
 - Backend integration with the AI model for predictions.
-- Visualizations of model results (optional).
+- Visualizations of model results.
 
 
