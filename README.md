@@ -52,7 +52,7 @@ Below is an explanation of the libraries used in this project:
   - Used for creating visualizations such as confusion matrices or performance plots.
 
 ## Website Overview (Master Branch)
-The `master` branch contains the implementation of a website that utilizes the trained AI model from the `main` branch. The website provides an interface for users to input data and receive predictions.
+The `master` branch contains the implementation of a website that utilizes the trained AI model from the `main` branch. The website provides an interface for users to input data and receive predictions. It uses django framework
 
 ### Website Features
 - User-friendly interface for data input.
