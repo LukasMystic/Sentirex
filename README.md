@@ -59,11 +59,4 @@ The `master` branch contains the implementation of a website that utilizes the t
 - Backend integration with the AI model for predictions.
 - Visualizations of model results (optional).
 
-## Contributions
-Feel free to contribute to the project by submitting issues or creating pull requests.
 
-## License
-This project is licensed under the MIT License. See the `LICENSE` file for details.
-
----
-For any questions, please contact the repository maintainer.
